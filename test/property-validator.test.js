@@ -13,6 +13,21 @@ module.exports = {
 	},
 	'Failed validate throws error': function() {
 		var validator = new validity.PropertyValidator(isValue);
-		assert.ok(validator.validate('Agree', false));
+		assert.throws(
+			function() {
+				validator.validate('Agree', false);
+			},
+			/Agree is not valid/
+		);
 	},
+	'Failed returns custom failure messasge': function() {
+		var validator = new validity.PropertyValidator(isValue);
+		validator.setFailureMessage('#{name} should be true');
+		assert.throws(
+			function() {
+				validator.validate('Agree', false);
+			},
+			/Agree should be true/
+		);
+	}
 };
