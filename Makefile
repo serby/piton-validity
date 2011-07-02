@@ -1,4 +1,4 @@
-TESTS = $(shell find test/*.test.js)
+TESTS = $(shell find test -name '*.test.js')
 
 test:
 	@NODE_ENV=test expresso \
