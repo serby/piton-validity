@@ -29,5 +29,14 @@ module.exports = {
 			},
 			/Agree should be true/
 		);
+	},
+	'Failed returns custom failure messasge set from constructor': function() {
+		var validator = new validity.PropertyValidator(isValue, '#{name} should be true');
+		assert.throws(
+			function() {
+				validator.validate('Agree', false);
+			},
+			/Agree should be true/
+		);
 	}
 };
