@@ -1,4 +1,4 @@
-TESTS = $(shell find test -name '*.test.js')
+TESTS = $(shell find test/*.test.js)
 
 test:
 	@NODE_ENV=test expresso \
@@ -8,3 +8,10 @@ test:
 
 test-cov:
 	@TESTFLAGS=--cov $(MAKE) test
+
+npm-publish:
+	@git tag $(VERSION)
+	@git push --tags
+	@npm publish
+
+.PHONY: test test-cov npm-publish
