@@ -9,13 +9,13 @@ function isValue(value) {
 module.exports = {
 	'Successful validate returns true': function() {
 		var validator = new validity.PropertyValidator(isValue);
-		assert.ok(validator.validate('Agree', true));
+		assert.ok(validator.validate('Agree', 'agree', { agree: true }));
 	},
 	'Failed validate throws error': function() {
 		var validator = new validity.PropertyValidator(isValue);
 		assert.throws(
 			function() {
-				validator.validate('Agree', false);
+				validator.validate('Agree', 'agree', { agree: false });
 			},
 			/Agree is not valid/
 		);
@@ -25,7 +25,7 @@ module.exports = {
 		validator.setFailureMessage('#{name} should be true');
 		assert.throws(
 			function() {
-				validator.validate('Agree', false);
+				validator.validate('Agree', 'agree', { agree: false });
 			},
 			/Agree should be true/
 		);
@@ -34,7 +34,7 @@ module.exports = {
 		var validator = new validity.PropertyValidator(isValue, '#{name} should be true');
 		assert.throws(
 			function() {
-				validator.validate('Agree', false);
+				validator.validate('Agree', 'agree', { agree: false });
 			},
 			/Agree should be true/
 		);
