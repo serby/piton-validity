@@ -27,4 +27,6 @@ Icon?
 
 # nodejs npm modules
 /node_modules
-/customer.log
+
+# Cake
+.cake_task_cache
