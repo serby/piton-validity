@@ -4,10 +4,10 @@ An extendible validation framework for validating the properties of an object. A
 
 ## Installation
 
-TBC
+      npm install piton-pipe
 
 ## Credits
-[Paul Serby](https://github.com/PabloSerbo/)
+* [Paul Serby](https://github.com/PabloSerbo/)
 
 ## Licence
 Licenced under the [New BSD License](http://opensource.org/licenses/bsd-license.php)
