@@ -1,7 +1,7 @@
 {
 	"name": "piton-validity",
 	"description": "A suite of validators from the piton toolkit",
-	"version": "0.0.4",
+	"version": "0.1.0",
 	"author": "Paul Serby <paul.serby@clock.co.uk>",
 	"contributors": [
 		{ "name": "Paul Serby", "email": "paul.serby@clock.co.uk" }
@@ -15,7 +15,7 @@
 	"repository": "git://github.com/PabloSerbo/piton-validity",
 		"main": "index",
 	"scripts": {
-		"test": "make test",
+		"test": "cake test",
 		"prepublish" : "npm prune"
 	},
 	"engines": { "node": ">= 0.4.6 < 0.5.0" }

@@ -1,42 +1,33 @@
 var
-	validity = require('../../piton-validity'),
+	Validity = require('../../piton-validity'),
 	assert = require('assert');
 
-function isValue(value) {
-	return value;
+function isValue(value, callback) {
+	callback(value);
 }
 
 module.exports = {
 	'Successful validate returns true': function() {
-		var validator = new validity.PropertyValidator(isValue);
-		assert.ok(validator.validate('Agree', 'agree', { agree: true }));
+		var validator = Validity.createPropertyValidator(isValue);
+		validator.validate('Agree', true, assert.ok);
 	},
 	'Failed validate throws error': function() {
-		var validator = new validity.PropertyValidator(isValue);
-		assert.throws(
-			function() {
-				validator.validate('Agree', 'agree', { agree: false });
-			},
-			/Agree is not valid/
-		);
+		var validator = Validity.createPropertyValidator(isValue);
+		validator.validate('Agree', false, function(valid) {
+			assert.eql(valid.message, 'Agree is not valid');
+		});
 	},
 	'Failed returns custom failure messasge': function() {
-		var validator = new validity.PropertyValidator(isValue);
+		var validator = Validity.createPropertyValidator(isValue);
 		validator.setFailureMessage('#{name} should be true');
-		assert.throws(
-			function() {
-				validator.validate('Agree', 'agree', { agree: false });
-			},
-			/Agree should be true/
-		);
+		validator.validate('Agree', false, function(valid) {
+			assert.eql(valid.message, 'Agree should be true');
+		});
 	},
 	'Failed returns custom failure messasge set from constructor': function() {
-		var validator = new validity.PropertyValidator(isValue, '#{name} should be true');
-		assert.throws(
-			function() {
-				validator.validate('Agree', 'agree', { agree: false });
-			},
-			/Agree should be true/
-		);
+		var validator = Validity.createPropertyValidator(isValue, '#{name} should be true');
+		validator.validate('Agree', false, function(valid) {
+			assert.eql(valid.message, 'Agree should be true');
+		});
 	}
 };
