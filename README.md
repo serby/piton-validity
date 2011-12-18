@@ -8,7 +8,7 @@ An extendible validation framework for validating the properties of an object. A
 
 ## Run Tests
 
-      npm Tests
+      npm tests
 
 ## Credits
 * [Paul Serby](https://github.com/serby/)
